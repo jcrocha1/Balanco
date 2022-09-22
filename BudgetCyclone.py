@@ -4,6 +4,8 @@
 # Julio Cesar de Castro Rocha
 # Marinha do Brasil / Universidade de São Paulo (USP)
 # Centro de Hidrografia da Marinha (CHM) / Instituto de Astronomia, Geociências e Ciências Atmosféricas
+
+# Tradução de código GrADS apresentado por Prof. Dr. Ricardo Hallak (IAG-USP)
 #-------------------------------------------------------------------------
 
 import pygrib as pg
