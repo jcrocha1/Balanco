@@ -122,7 +122,8 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
 
         print("Cyc Lat ", cycLat, ", Lon ", cycLon)
 
-        # ====== determinar a extensão do quadrado ao redor do ciclone, nesse caso 5 graus para todos os lados
+        # --------------------------------
+        # determinar a extensão do quadrado ao redor do ciclone, nesse caso 5 graus para todos os lados
         # extent = [cycLon - 5, cycLat - 5, cycLon + 5, cycLat + 5]
 
         extent = [[cycLon - 5, cycLat - 5, cycLon + 5, cycLat + 5],  # q0 TUDO
@@ -136,10 +137,11 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
         tempkm1 = []
         levs = []
         tempdf = []
-        # datetime.datetime.strptime(dt, '%Y%m%d')
+
         for sample in templ:
-            # if datetime.datetime.strptime(str(sample.dataDate), '%Y%m%d') == datRefs:
+
             if levmin < sample['level'] < levmax:
+
                 if sample.analDate == datRefs:
                     temp, lats, lons = sample.data(lat1=extent[quad][1], lat2=extent[quad][3],
                                                    lon1=extent[quad][0], lon2=extent[quad][2])
@@ -161,6 +163,7 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
         up1 = []
         um1 = []
 
+        # importação das variáveis em níveis de pressão
         for sample in ul:
             if sample['level'] > levmin and sample['level'] < levmax:
                 if sample.analDate == datRefs:
@@ -204,7 +207,8 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
                     VVELprsk, lats, lons = sample.data(lat1=extent[quad][1], lat2=extent[quad][3],
                                                        lon1=extent[quad][0], lon2=extent[quad][2])
                     VVELprs.append(VVELprsk)
-        # %%
+        # %% --------------------------------
+        # Determinação das constantes
         pi = np.pi  # 3.1416
         VelAngEarth = 2 * pi / 86400.0
         efe = 2 * VelAngEarth * np.sin(lats * pi / 180)  # parametro de coriolis f
@@ -218,7 +222,8 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
         # %%
         # def Zeta(l): mg.hcurl(u[l], v[l], lat, lon)
 
-        # %% md Balanço de Vorticidade
+        # %% ----------------------------------------------------------------
+        # md ================= BALANÇO DE VORTICIDADE =================
 
         # %% md Vorticidade relativa
         # %%
@@ -301,9 +306,8 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
             dZetadt.append(dzetadt)
 
 
-        # %% md Balanço de Calor
-
-
+        # %% ----------------------------------------------------------------
+        # ================= Balanço de Calor =================
 
 
         # %%
