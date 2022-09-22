@@ -1,4 +1,13 @@
-#%%
+#-------------------------------------------------------------------------
+# Balanço de Calor e Vorticidade
+#
+# Julio Cesar de Castro Rocha
+# Marinha do Brasil / Universidade de São Paulo (USP)
+# Centro de Hidrografia da Marinha (CHM) / Instituto de Astronomia, Geociências e Ciências Atmosféricas
+#-------------------------------------------------------------------------
+
+# Balanço sem criação dos gráficos, apenas as variáveis são exportadas em colunas para um arquivo csv
+
 import pygrib as pg
 import pandas as pd
 import mygrads as mg
@@ -9,7 +18,6 @@ import csv
 from pathlib import Path
 
 seas = ['DJF', 'SON', 'JJA', 'MAM']
-# seas = ['JJA']
 
 levmin = 70
 levmax = 1000
@@ -22,8 +30,10 @@ Stages = 'mature'
 alpha = 0.2
 mrkSiz = 2
 
-diret = "/Users/Julio/PycharmProjects/Dataset"
-# diret = '/Volumes/Julio Rocha HD/Dataset'
+diret = "/Users/Julio/PycharmProjects/Dataset"  # diretório padrão do conjunto de dados
+
+# início do loop para cada estação do ano, será necessário arquivo csv com data-hora, lat-lon, e Hs.
+# o arquivo deverá incluir a estação do ano, para este código
 for s in seas:
     extremes = pd.read_csv("/Users/Julio/PycharmProjects/Dataset/csv/dfplt90{}-20-35.csv".format(s))
 
@@ -36,12 +46,10 @@ for s in seas:
     p99 = np.percentile(extH, 99)
 
     #%%
-    # ====== importar arquivos grib com os dados ambientais, e csv com informação do ciclone
-
-
-    #%%
+    # -------------------------------
+    # loop para cada quadrante do ciclone
     quadr = 0
-    for quad in range(5):  #number of sectors, 0 is whole, 1 NW, 2 NE, 3 SE, 4 SW.
+    for quad in range(5):  # Quadrantes, 0 área completa, 1 NE, 2 SE, 3 SW, 4 NW.
         quadr += 1
 
         evt = 0
