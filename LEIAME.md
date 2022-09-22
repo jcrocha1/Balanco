@@ -1,7 +1,7 @@
 # Balanço de Calor e Vorticidade
 Código em Python para balanço de Calor e Vorticidade
 
-Este código foi desenvolvido a partir do Código em GrADS apresentado pelo Professor Ricardo Hallak, do Insituto de Geofísica, 
+Este código foi desenvolvido a partir do Código em GrADS apresentado pelo Prof. Dr. Ricardo Hallak, do Insituto de Geofísica, 
 Astronomia e Ciências Atmosféricas da Universidade de São Paulo.
 
 Com ele é possível realisar o balanço a partir das equações do balanço de calor e balanço de vorticidade, gerando
