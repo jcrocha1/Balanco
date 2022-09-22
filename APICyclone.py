@@ -3,7 +3,7 @@
 #
 # Julio Cesar de Castro Rocha
 # Marinha do Brasil / Universidade de São Paulo (USP)
-# Centro de Hidrografia da Marinha (CHM) / Instituto de Astronomia, Geociências e Ciências Atmosféricas
+# Centro de Hidrografia da Marinha (CHM) / Instituto de Astronomia, Geociências e Ciências Atmosféricas.
 #-------------------------------------------------------------------------
 
 import cdsapi
