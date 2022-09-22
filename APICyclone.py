@@ -1,13 +1,22 @@
+#-------------------------------------------------------------------------
+# Donwload dados Era5
+#
+# Julio Cesar de Castro Rocha
+# Marinha do Brasil / Universidade de São Paulo (USP)
+# Centro de Hidrografia da Marinha (CHM) / Instituto de Astronomia, Geociências e Ciências Atmosféricas
+#-------------------------------------------------------------------------
+
 import cdsapi
 import datetime
 
-dateList = [line.strip() for line in open('/Users/Julio/PycharmProjects/Dataset/Anita/dateAnita.txt')]
-
+# Lista de data-horas para baixar os dados, correspondendo as datas das fases do ciclone
+dateList = [line.strip() for line in open('/Users/Julio/PycharmProjects/Dataset/dCyclone/dateCyclone.txt')]
 
 c = cdsapi.Client()
 
-deltat = datetime.timedelta(hours=6)
+deltat = datetime.timedelta(hours=6)  # intervalo de horas para mais e menos a serem utilizadas
 countEvt = 0
+
 for ext in dateList:
 
     data = ext

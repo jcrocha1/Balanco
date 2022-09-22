@@ -38,7 +38,7 @@ alpha = 1
 
 # --------------------------------
 # arquivo csv com data, e lat-lon do ciclone nas 5 fases
-extremes = pd.read_csv(diret + "/dAnita/dataAnita.csv")
+extremes = pd.read_csv(diret + "/dCyclone/dataCyclone.csv")
 
 extDates = extremes['date'].tolist()
 extLat = extremes['cyc lat'].tolist()
@@ -98,7 +98,7 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
         # do ERA5, ERA5 hourly data on pressure levels from 1959 to present
         # https://cds.climate.copernicus.eu/cdsapp#!/search?text=ERA5%20back%20extension&type=dataset&keywords=((%20%22Product%20type:%20Reanalysis%22%20)%20AND%20(%20%22Variable%20domain:%20Atmosphere%20(surface)%22%20OR%20%22Variable%20domain:%20Atmosphere%20(upper%20air)%22%20)%20AND%20(%20%22Spatial%20coverage:%20Global%22%20)%20AND%20(%20%22Temporal%20coverage:%20Past%22%20))
 
-        df = pg.open(diret + '/dAnita/re{}{}{}{}.grib'.format(extDates[i][0:4], extDates[i][5:7], extDates[i][8:10],
+        df = pg.open(diret + '/dCyclone/re{}{}{}{}.grib'.format(extDates[i][0:4], extDates[i][5:7], extDates[i][8:10],
                                                               extDates[i][11:13]))
         print('importing variables ')
         templ = df.select(name='Temperature', typeOfLevel='isobaricInhPa')
@@ -474,7 +474,7 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
     newaxv = figv.add_axes([0.85, 0.9, 0.05, 0.05], anchor='NE', zorder=1)  # pos fig quad
     newaxv.imshow(im)
     newaxv.axis('off')
-    figv.savefig('/Users/Julio/PycharmProjects/Budget/figures/fAnita/bvort{}.png'.format(quad), dpi=300)
+    figv.savefig('/Users/Julio/PycharmProjects/Budget/figures/fCyclone/bvort{}.png'.format(quad), dpi=300)
     figv.show()
 
     figc.suptitle('Quadrante {}'.format(quad))
@@ -483,7 +483,7 @@ for quad in range(5):  # quadrante, 0 é a área total, 1 NW, 2 NE, 3 SE, 4 SW.
     newaxc = figc.add_axes([0.85, 0.9, 0.05, 0.05], anchor='NE', zorder=1)
     newaxc.imshow(im)
     newaxc.axis('off')
-    figc.savefig('/Users/Julio/PycharmProjects/Budget/figures/fAnita/bcalr{}.png'.format(quad), dpi=300)
+    figc.savefig('/Users/Julio/PycharmProjects/Budget/figures/fCyclone/bcalr{}.png'.format(quad), dpi=300)
     figc.show()
     # plt.close()
 
