@@ -5,21 +5,30 @@
 # Marinha do Brasil / Universidade de São Paulo (USP)
 # Centro de Hidrografia da Marinha (CHM) / Instituto de Astronomia, Geociências e Ciências Atmosféricas.
 #-------------------------------------------------------------------------
+anoCyc = 2011
 
 import cdsapi
 import datetime
+import pandas as pd
+import math as m
+
+diret = "/Users/Julio/PycharmProjects/Dataset"
 
 # Lista de data-horas para baixar os dados, correspondendo as datas das fases do ciclone
-dateList = [line.strip() for line in open('/Users/Julio/PycharmProjects/Dataset/dCyclone/dateCyclone.txt')]
+# dateList = [line.strip() for line in open('/Users/Julio/PycharmProjects/Dataset/dCyclone/dateCyclone-{}.txt'.format(anoCyc))]
+df = pd.read_csv(diret + "/dCyclone/dataCyclone-{}.csv".format(anoCyc))
+dateList = df['date']
+lat = df['cyc lat']
+lon = df['cyc lon']
 
 c = cdsapi.Client()
 
 deltat = datetime.timedelta(hours=6)  # intervalo de horas para mais e menos a serem utilizadas
 countEvt = 0
 
-for ext in dateList:
+for i in range(len(dateList)):
 
-    data = ext
+    data = dateList[i]
     date = datetime.datetime.strptime(data, '%Y-%m-%d %H:%M:%S')
 
     dates = [date - deltat, date, date + deltat]
@@ -63,12 +72,20 @@ for ext in dateList:
                 time,
 
             'area': [
-                0, -70, -70,
-                0,
+                # 0,  # N
+                # -70,  # W
+                # -70,  # S
+                # 0,  # E
+
+                round(lat[i] + 6),
+                round(lon[i] - 6),
+                round(lat[i] - 6),
+                round(lon[i] + 6),
+
             ],
             'format': 'grib',
         },
-        '/Users/Julio/PycharmProjects/Dataset/Anita/re{}{}{}{}.grib'.format(data[0:4], data[5:7], data[8:10], data[11:13]))
+        '/Users/Julio/PycharmProjects/Dataset/dCyclone/re{}{}{}{}.grib'.format(data[0:4], data[5:7], data[8:10], data[11:13]))
     countEvt += 1
     print('end event', countEvt, '/', len(dateList))
 print('end')
